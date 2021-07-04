@@ -15,7 +15,6 @@ echo $MO_PID | awk '$0=$2' FS=[ RS=] > .MO_SIPP_PID
 
 echo -e "\t\t \033[1;32m Started Callee script with PID `cat .MO_SIPP_PID` \033[0m \n"
 
-#while ps -p `cat .MO_SIPP_PID` &>/dev/null; do echo -e "\n\t\t \033[1;33m sipp is still running \033[0m"; sleep 10; done
 
 a=0
 while [ $a -lt 10 ]
