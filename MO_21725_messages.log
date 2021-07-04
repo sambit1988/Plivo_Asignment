@@ -1,0 +1,309 @@
+----------------------------------------------- 2021-07-03 20:39:33.884282
+UDP message sent (770 bytes):
+
+INVITE sip:test895187951711567647677@phone.plivo.com SIP/2.0
+Via: SIP/2.0/UDP 172.31.0.7:5060;branch=z9hG4bK-21725-1-0
+Max-Forwards: 70
+Call-ID: 1-21725@172.31.0.7
+From: <sip:test1281881673873471385@phone.plivo.com>;tag=21725SIPpTag_Caller_test1281881673873471385_1
+To: <sip:test895187951711567647677@phone.plivo.com>
+CSeq: 1 INVITE
+Expires: 720000
+Allow: INVITE,ACK,CANCEL,OPTIONS,NOTIFY,PRACK,UPDATE,BYE
+Content-Length:   229
+Content-Type: application/sdp
+Contact: <sip:test1281881673873471385@172.31.0.7:5060;transport=UDP>
+
+v=0
+o=user1 test1281881673873471385 1 IN IP4 172.31.0.7
+s=-
+c=IN IP4 172.31.0.7
+t=0 0
+m=audio 2000 RTP/AVP 8 0 101
+a=sendrecv
+a=rtpmap:8 PCMA/8000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+
+----------------------------------------------- 2021-07-03 20:39:33.934477
+UDP message received [515] bytes :
+
+SIP/2.0 407 Proxy Authentication Required
+Via: SIP/2.0/UDP 172.31.0.7:5060;branch=z9hG4bK-21725-1-0;received=18.218.196.220
+Call-ID: 1-21725@172.31.0.7
+From: <sip:test1281881673873471385@phone.plivo.com>;tag=21725SIPpTag_Caller_test1281881673873471385_1
+To: <sip:test895187951711567647677@phone.plivo.com>;tag=29448b59318aeb4a6f5c278a948e722a.304f91de
+CSeq: 1 INVITE
+Proxy-Authenticate: Digest realm="phone.plivo.com", nonce="YODMMWDgywXtWlPiRGPuy+Gtzi7rPt32", qop="auth"
+Server: Plivo
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:39:33.934642
+UDP message sent (412 bytes):
+
+ACK sip:test895187951711567647677@phone.plivo.com SIP/2.0
+Via: SIP/2.0/UDP 172.31.0.7:5060;branch=z9hG4bK-21725-1-0;rport=5060
+From: <sip:test1281881673873471385@phone.plivo.com>;tag=21725SIPpTag_Caller_test1281881673873471385_1
+To: <sip:test895187951711567647677@phone.plivo.com>;tag=29448b59318aeb4a6f5c278a948e722a.304f91de
+Call-ID: 1-21725@172.31.0.7
+CSeq: 1 ACK
+Max-Forwards: 70
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:39:33.934765
+UDP message sent (1005 bytes):
+
+INVITE sip:test895187951711567647677@phone.plivo.com SIP/2.0
+Via: SIP/2.0/UDP 172.31.0.7:5060;branch=z9hG4bK-21725-1-4
+Max-Forwards: 70
+Call-ID: 1-21725@172.31.0.7
+From: <sip:test1281881673873471385@phone.plivo.com>;tag=21725SIPpTag_Caller_test1281881673873471385_1
+To: <sip:test895187951711567647677@phone.plivo.com>
+CSeq: 2 INVITE
+Proxy-Authorization: Digest username="test1281881673873471385",realm="phone.plivo.com",cnonce="6b8b4567",nc=00000001,qop=auth,uri="sip:52.9.254.123:5060",nonce="YODMMWDgywXtWlPiRGPuy+Gtzi7rPt32",response="5a8f5a98319aac3c5b7ad9936bc74ea4",algorithm=MD5
+Expires: 720000
+Allow: INVITE,ACK,CANCEL,OPTIONS,NOTIFY,PRACK,UPDATE,BYE
+Content-Length:   210
+Content-Type: application/sdp
+Contact: <sip:test1281881673873471385@172.31.0.7:5060;transport=UDP>
+
+v=0
+o=user1 1234 1 IN IP4 172.31.0.7
+s=-
+c=IN IP4 172.31.0.7
+t=0 0
+m=audio 2000 RTP/AVP 8 0 101
+a=sendrecv
+a=rtpmap:8 PCMA/8000
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+
+----------------------------------------------- 2021-07-03 20:39:33.993591
+UDP message received [383] bytes :
+
+SIP/2.0 100 trying -- your call is important to us
+Via: SIP/2.0/UDP 172.31.0.7:5060;branch=z9hG4bK-21725-1-4;rport=5060;received=18.218.196.220
+Call-ID: 1-21725@172.31.0.7
+From: <sip:test1281881673873471385@phone.plivo.com>;tag=21725SIPpTag_Caller_test1281881673873471385_1
+To: <sip:test895187951711567647677@phone.plivo.com>
+CSeq: 2 INVITE
+Server: Plivo
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:39:36.689229
+UDP message received [1205] bytes :
+
+SIP/2.0 183 Session Progress
+Via: SIP/2.0/UDP 172.31.0.7:5060;rport=5060;received=18.218.196.220;branch=z9hG4bK-21725-1-4
+Record-Route: <sip:52.9.254.123;lr=on;ftag=21725SIPpTag_Caller_test1281881673873471385_1;did=d49.b7a1>
+From: <sip:test1281881673873471385@phone.plivo.com>;tag=21725SIPpTag_Caller_test1281881673873471385_1
+To: <sip:test895187951711567647677@phone.plivo.com>;tag=Q55UtF0t6aQ1F
+Call-ID: 1-21725@172.31.0.7
+CSeq: 2 INVITE
+Contact: <sip:test895187951711567647677@10.200.22.92:5060;transport=udp>
+User-Agent: Plivo
+Accept: application/sdp
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REFER, NOTIFY
+Supported: path, replaces
+Allow-Events: talk, hold, conference, refer
+Content-Type: application/sdp
+Content-Disposition: session
+Content-Length: 274
+Remote-Party-ID: "test895187951711567647677" <sip:test895187951711567647677@phone.plivo.com>;party=calling;privacy=off;screen=no
+
+v=0
+o=Plivo 1625316790 1625316791 IN IP4 52.205.63.225
+s=Plivo
+c=IN IP4 52.205.63.225
+t=0 0
+m=audio 27986 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=silenceSupp:off - - - -
+a=ptime:20
+a=rtcp:27987 IN IP4 52.205.63.225
+
+----------------------------------------------- 2021-07-03 20:39:37.278214
+UDP message received [265] bytes :
+
+OPTIONS sip:18.218.196.220:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.202.22.16:5060;branch=z9hG4bK6612027
+From: sip:keepalive@phone.plivo.com;tag=2fd2263b
+To: sip:18.218.196.220:5060
+Call-ID: 14b1e7c0-3e4a3ad6-30245ca@10.202.22.16
+CSeq: 1 OPTIONS
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:39:37.278418
+UDP message sent (286 bytes):
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.202.22.16:5060;branch=z9hG4bK6612027
+From: sip:keepalive@phone.plivo.com;tag=2fd2263b
+To: sip:18.218.196.220:5060
+Call-ID: 14b1e7c0-3e4a3ad6-30245ca@10.202.22.16
+CSeq: 1 OPTIONS
+Contact: <sip:172.31.0.7:5060;transport=UDP>
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:39:38.706044
+UDP message received [1154] bytes :
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 172.31.0.7:5060;rport=5060;received=18.218.196.220;branch=z9hG4bK-21725-1-4
+Record-Route: <sip:52.9.254.123;lr=on;ftag=21725SIPpTag_Caller_test1281881673873471385_1;did=d49.b7a1>
+From: <sip:test1281881673873471385@phone.plivo.com>;tag=21725SIPpTag_Caller_test1281881673873471385_1
+To: <sip:test895187951711567647677@phone.plivo.com>;tag=Q55UtF0t6aQ1F
+Call-ID: 1-21725@172.31.0.7
+CSeq: 2 INVITE
+Contact: <sip:test895187951711567647677@10.200.22.92:5060;transport=udp>
+User-Agent: Plivo
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REFER, NOTIFY
+Supported: path, replaces
+Allow-Events: talk, hold, conference, refer
+Content-Type: application/sdp
+Content-Disposition: session
+Content-Length: 274
+Remote-Party-ID: "Outbound Call" <sip:test895187951711567647677@phone.plivo.com>;party=calling;privacy=off;screen=no
+
+v=0
+o=Plivo 1625316790 1625316791 IN IP4 52.205.63.225
+s=Plivo
+c=IN IP4 52.205.63.225
+t=0 0
+m=audio 27986 RTP/AVP 0 101
+a=rtpmap:0 PCMU/8000
+a=rtpmap:101 telephone-event/8000
+a=fmtp:101 0-16
+a=silenceSupp:off - - - -
+a=ptime:20
+a=rtcp:27987 IN IP4 52.205.63.225
+
+----------------------------------------------- 2021-07-03 20:39:38.707305
+UDP message sent (486 bytes):
+
+ACK sip:test895187951711567647677@10.200.22.92:5060;transport=udp SIP/2.0
+Via: SIP/2.0/UDP 172.31.0.7:5060;branch=z9hG4bK-21725-1-9
+Route: <sip:52.9.254.123;lr=on;ftag=21725SIPpTag_Caller_test1281881673873471385_1;did=d49.b7a1>
+From: <sip:test1281881673873471385@phone.plivo.com>;tag=21725SIPpTag_Caller_test1281881673873471385_1
+To: <sip:test895187951711567647677@phone.plivo.com>;tag=Q55UtF0t6aQ1F
+Call-ID: 1-21725@172.31.0.7
+CSeq: 2 ACK
+Max-Forwards: 70
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:39:56.472071
+UDP message received [265] bytes :
+
+OPTIONS sip:18.218.196.220:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.202.24.15:5060;branch=z9hG4bK2517280
+From: sip:keepalive@phone.plivo.com;tag=65287d41
+To: sip:18.218.196.220:5060
+Call-ID: 605b9e2b-22de0489-5556e11@10.202.24.15
+CSeq: 1 OPTIONS
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:39:56.472226
+UDP message sent (286 bytes):
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.202.24.15:5060;branch=z9hG4bK2517280
+From: sip:keepalive@phone.plivo.com;tag=65287d41
+To: sip:18.218.196.220:5060
+Call-ID: 605b9e2b-22de0489-5556e11@10.202.24.15
+CSeq: 1 OPTIONS
+Contact: <sip:172.31.0.7:5060;transport=UDP>
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:40:07.288872
+UDP message received [265] bytes :
+
+OPTIONS sip:18.218.196.220:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.202.22.16:5060;branch=z9hG4bK8958196
+From: sip:keepalive@phone.plivo.com;tag=2fd2299e
+To: sip:18.218.196.220:5060
+Call-ID: 14b1e7c0-3e4a3e39-30245e8@10.202.22.16
+CSeq: 1 OPTIONS
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:40:07.289016
+UDP message sent (286 bytes):
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.202.22.16:5060;branch=z9hG4bK8958196
+From: sip:keepalive@phone.plivo.com;tag=2fd2299e
+To: sip:18.218.196.220:5060
+Call-ID: 14b1e7c0-3e4a3e39-30245e8@10.202.22.16
+CSeq: 1 OPTIONS
+Contact: <sip:172.31.0.7:5060;transport=UDP>
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:40:26.483490
+UDP message received [265] bytes :
+
+OPTIONS sip:18.218.196.220:5060 SIP/2.0
+Via: SIP/2.0/UDP 10.202.24.15:5060;branch=z9hG4bK1896858
+From: sip:keepalive@phone.plivo.com;tag=6528806c
+To: sip:18.218.196.220:5060
+Call-ID: 605b9e2b-22de07b4-5556e2f@10.202.24.15
+CSeq: 1 OPTIONS
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:40:26.483627
+UDP message sent (286 bytes):
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 10.202.24.15:5060;branch=z9hG4bK1896858
+From: sip:keepalive@phone.plivo.com;tag=6528806c
+To: sip:18.218.196.220:5060
+Call-ID: 605b9e2b-22de07b4-5556e2f@10.202.24.15
+CSeq: 1 OPTIONS
+Contact: <sip:172.31.0.7:5060;transport=UDP>
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:40:28.887497
+UDP message received [783] bytes :
+
+BYE sip:test1281881673873471385@18.218.196.220:5060;transport=UDP SIP/2.0
+Record-Route: <sip:52.9.254.123;lr=on;ftag=21725SIPpTag_Caller_test1281881673873471385_1>
+Via: SIP/2.0/UDP 52.9.254.123:5060;branch=z9hG4bK94ac.cf8e844f8267e646a984e0cda65f55ea.0
+Via: SIP/2.0/UDP 10.200.22.92;received=10.200.22.92;rport=5060;branch=z9hG4bKep4ZeveUHUXje
+Max-Forwards: 69
+From: <sip:test895187951711567647677@phone.plivo.com>;tag=Q55UtF0t6aQ1F
+To: <sip:test1281881673873471385@phone.plivo.com>;tag=21725SIPpTag_Caller_test1281881673873471385_1
+Call-ID: 1-21725@172.31.0.7
+CSeq: 38118622 BYE
+User-Agent: Plivo
+Allow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, INFO, UPDATE, REFER, NOTIFY
+Supported: path, replaces
+Reason: Q.850;cause=16;text="NORMAL_CLEARING"
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:40:28.887613
+UDP message sent (437 bytes):
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 52.9.254.123:5060;branch=z9hG4bK94ac.cf8e844f8267e646a984e0cda65f55ea.0, SIP/2.0/UDP 10.200.22.92;received=10.200.22.92;rport=5060;branch=z9hG4bKep4ZeveUHUXje
+From: <sip:test895187951711567647677@phone.plivo.com>;tag=Q55UtF0t6aQ1F
+To: <sip:test1281881673873471385@phone.plivo.com>;tag=21725SIPpTag_Caller_test1281881673873471385_1
+Call-ID: 1-21725@172.31.0.7
+CSeq: 38118622 BYE
+Content-Length: 0
+
+

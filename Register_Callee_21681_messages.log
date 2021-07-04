@@ -1,0 +1,62 @@
+----------------------------------------------- 2021-07-03 20:39:30.804312
+UDP message sent (631 bytes):
+
+REGISTER sip:phone.plivo.com SIP/2.0
+Via: SIP/2.0/UDP 172.31.0.7:5061;branch=z9hG4bK-21681-1-0
+From: <sip:test895187951711567647677@phone.plivo.com>;tag=1
+To: <sip:test895187951711567647677@phone.plivo.com>
+Call-ID: 1-21681@172.31.0.7
+CSeq: 1 REGISTER
+Contact: <sip:test895187951711567647677@172.31.0.7:5061;transport=UDP>;expires=3600
+Max-Forwards: 70
+Expires: 3600
+Authorization: Digest username="test895187951711567647677@phone.plivo.com", realm="phone.plivo.com", nonce="", uri="sip:phone.plivo.com", response="", algorithm=MD5
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY, SUBSCRIBE
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:39:30.854453
+UDP message received [455] bytes :
+
+SIP/2.0 401 Unauthorized
+Via: SIP/2.0/UDP 172.31.0.7:5061;branch=z9hG4bK-21681-1-0;rport=5061;received=18.218.196.220
+From: <sip:test895187951711567647677@phone.plivo.com>;tag=1
+To: <sip:test895187951711567647677@phone.plivo.com>;tag=29448b59318aeb4a6f5c278a948e722a.a85e888b
+Call-ID: 1-21681@172.31.0.7
+CSeq: 1 REGISTER
+WWW-Authenticate: Digest realm="phone.plivo.com", nonce="YODMLmDgywJqi+ELhalIzoFixraVGDCa"
+Server: Plivo
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:39:30.854617
+UDP message sent (696 bytes):
+
+REGISTER sip:phone.plivo.com SIP/2.0
+Via: SIP/2.0/UDP 172.31.0.7:5061;branch=z9hG4bK-21681-1-2
+From: <sip:test895187951711567647677@phone.plivo.com>;tag=1
+To: <sip:test895187951711567647677@phone.plivo.com>
+Call-ID: 1-21681@172.31.0.7
+CSeq: 2 REGISTER
+Contact: <sip:test895187951711567647677@172.31.0.7:5061;transport=UDP>;expires=360000
+Authorization: Digest username="test895187951711567647677",realm="phone.plivo.com",uri="sip:52.9.254.123:5060",nonce="YODMLmDgywJqi+ELhalIzoFixraVGDCa",response="8d8caf82177b967a174a6b3206a3c425",algorithm=MD5, integrity-protected="yes"
+Max-Forwards: 70
+Expires: 360000
+Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, NOTIFY
+Content-Length: 0
+
+
+----------------------------------------------- 2021-07-03 20:39:30.911774
+UDP message received [444] bytes :
+
+SIP/2.0 200 OK
+Via: SIP/2.0/UDP 172.31.0.7:5061;branch=z9hG4bK-21681-1-2;rport=5061;received=18.218.196.220
+From: <sip:test895187951711567647677@phone.plivo.com>;tag=1
+To: <sip:test895187951711567647677@phone.plivo.com>;tag=29448b59318aeb4a6f5c278a948e722a.a85e888b
+Call-ID: 1-21681@172.31.0.7
+CSeq: 2 REGISTER
+Contact: <sip:test895187951711567647677@18.218.196.220:5061;transport=UDP>;expires=360000
+Server: Plivo
+Content-Length: 0
+
+

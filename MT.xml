@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+
+<scenario name="Basic Sipstone UAS">
+
+
+  <!--recv request="OPTIONS" optional="true" next="options">
+  </recv-->
+  <recv request="INVITE" rrs="true">
+  <action>
+   <exec command="echo sipp_log start > SIPP_LOGS.txt" />
+   <exec command="echo INVITE_RECV_TIME = `date` >> SIPP_LOGS.txt" />
+   <ereg regexp=".*" header="Record-Route: " search_in="hdr" assign_to="route" />
+   <ereg regexp=".*" search_in="hdr" header="From:" assign_to="from"/>
+   <ereg regexp=".*" search_in="hdr" header="To:" assign_to="to"/>
+   <ereg regexp="sip:(.*)>.*" search_in="hdr" header="Contact" assign_to="trash,remote_contact"/>
+  </action>
+  </recv>
+
+ <Reference variables="trash"/>
+
+  <send>
+    <![CDATA[
+
+      SIP/2.0 100 Trying
+      [last_Via:]
+      [last_From:]
+      [last_To:]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Content-Length: 0
+    ]]>
+  </send>
+
+ <pause milliseconds="2000"/>
+ <send>
+    <![CDATA[
+
+      SIP/2.0 180 Ringing
+      [last_Via:]
+      [last_To:];tag=[pid]SIPpTag_Caller_[field1]_[call_number]
+      [last_From:]
+      Record-Route: [$route]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Contact: <sip:[field1]@[local_ip]:[local_port];transport=[transport]>
+      Content-Length: 0
+
+    ]]>
+ </send>
+
+  
+ <pause milliseconds="2000"/>
+ 
+ <send>
+    <![CDATA[
+
+      SIP/2.0 200 OK
+      [last_Via:]
+      [last_From:]
+      [last_To:];tag=[pid]SIPpTag_Caller_[field1]_[call_number]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Record-Route: [$route]
+      Contact: <sip:[field1]@[local_ip]:[local_port];transport=[transport]>
+      Content-Type: application/sdp
+      Content-Length: [len]
+
+      v=0
+      o=user2 2345 1 IN IP[local_ip_type] [local_ip]
+      s=-
+      c=IN IP[media_ip_type] [media_ip]
+      t=0 0
+      m=audio [media_port] RTP/AVP 0 101
+      a=sendrecv
+      a=rtpmap:0 PCMU/8000/1
+      a=rtpmap:101 telephone-event/8000
+      a=fmtp:101 0-16
+      a=maxptime:240    ]]>
+  </send>
+
+ <recv request="ACK">
+    <action>
+      <exec command="echo CALL_STARTED_TIME = `date +%s`>> SIPP_LOGS.txt"/>
+    </action>
+ </recv>
+
+ <pause milliseconds="50000"/>
+
+ <send>
+    <![CDATA[
+
+      BYE sip:[$remote_contact] SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]   
+      From: [$to];tag=[pid]SIPpTag_Caller_[field1]_[call_number]
+      To: [$from]
+      [last_Call-ID:]
+      CSeq: 10 BYE
+      Max-Forwards: 70
+      Content-Length: 0
+
+    ]]>
+  </send>
+
+ <nop>
+    <action>
+      <exec command="echo BYE_SENT_TIME = `date` >> SIPP_LOGS.txt" />
+    </action>
+ </nop>
+
+  <recv response="200" crlf="true">
+    <action>
+      <exec command="echo CALL_TERMINATED_TIME = `date +%s` >> SIPP_LOGS.txt"/>
+    </action>
+  </recv>
+
+
+<!--label id="options"/>
+
+   <send>
+    <![CDATA[
+
+      SIP/2.0 200 OK
+      [last_Via:]
+      [last_From:]
+      [last_To:];tag=[pid]SIPpTag_Caller_[field1]_[call_number]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Content-Length: 0
+
+    ]]>
+  </send-->
+<!-- definition of the response time repartition table (unit is ms)   -->
+  <ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200"/>
+     
+<!-- definition of the call length repartition table (unit is ms)     -->
+  <CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000"/>
+
+</scenario>

@@ -1,0 +1,160 @@
+<?xml version=1.0 encoding=ISO-8859-1 ?>
+<!DOCTYPE scenario SYSTEM sipp.dtd>
+
+<scenario name=Client with regexp scenario>
+
+
+<send> 
+    <![CDATA[
+
+      INVITE sip:[field1]@[field2] SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      Max-Forwards: 70
+      Call-ID: [call_id]
+      From: <sip:[field0]@[field2]>;tag=[pid]SIPpTag_Caller_[field0]_[call_number]
+      To: <sip:[field1]@[field2]>
+      CSeq: 1 INVITE
+      Expires: 720000
+      Allow: INVITE,ACK,CANCEL,OPTIONS,NOTIFY,PRACK,UPDATE,BYE
+      Content-Length: [len]
+      Content-Type: application/sdp
+      Contact: <sip:[field0]@[local_ip]:[local_port];transport=[transport]>
+
+      v=0
+      o=user1 [field0] 1 IN IP[local_ip_type] [local_ip]
+      s=-
+      c=IN IP[media_ip_type] [media_ip]
+      t=0 0
+      m=audio [media_port] RTP/AVP 8 0 101
+      a=sendrecv
+      a=rtpmap:8 PCMA/8000
+      a=rtpmap:0 PCMU/8000
+      a=rtpmap:101 telephone-event/8000
+      a=fmtp:101 0-16
+
+    ]]>
+  </send>
+  
+  <recv response="100" optional="true">
+  </recv>
+
+  <recv response="407" auth="true"  next="auth">
+   <action>
+      <ereg regexp=";branch=[^;]*" search_in="hdr" header="Via" check_it="false" assign_to="1"/>
+   </action>
+  </recv>
+
+<label id="auth"/>
+
+  <send>
+    <![CDATA[
+
+      ACK sip:[field1]@[field2] SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port][$1];rport=[local_port]
+      [routes]
+      [last_From:] 
+      [last_To:]
+      [last_Call-ID:]
+      CSeq: 1 ACK
+      Max-Forwards: 70
+      Content-Length: 0
+
+    ]]>
+  </send>
+
+<send> 
+    <![CDATA[
+
+      INVITE sip:[field1]@[field2] SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      Max-Forwards: 70
+      Call-ID: [call_id]
+      From: <sip:[field0]@[field2]>;tag=[pid]SIPpTag_Caller_[field0]_[call_number]
+      To: <sip:[field1]@[field2]>
+      CSeq: 2 INVITE
+      [field3]
+      Expires: 720000
+      Allow: INVITE,ACK,CANCEL,OPTIONS,NOTIFY,PRACK,UPDATE,BYE
+      Content-Length: [len]
+      Content-Type: application/sdp
+      Contact: <sip:[field0]@[local_ip]:[local_port];transport=[transport]>
+
+      v=0
+      o=user1 1234 1 IN IP[local_ip_type] [local_ip]
+      s=-
+      c=IN IP[media_ip_type] [media_ip]
+      t=0 0
+      m=audio [media_port] RTP/AVP 8 0 101
+      a=sendrecv
+      a=rtpmap:8 PCMA/8000
+      a=rtpmap:0 PCMU/8000
+      a=rtpmap:101 telephone-event/8000
+      a=fmtp:101 0-16
+
+    ]]>
+  </send>
+  
+  <recv response="100" optional="true">
+  </recv>
+
+  <recv response="183" optional="true">
+  </recv>
+  <recv response="180" optional="true">
+  </recv>
+
+
+  <!-- By adding rrs="true" (Record Route Sets), the route sets         -->
+  <!-- are saved and used for following messages sent. Useful to test   -->
+  <!-- against stateful SIP proxies/B2BUAs.                             -->
+  <recv response="200" rtd="true"  rrs="true">
+    <action>
+      <ereg regexp="sip.*[a-z,A-Z,0-9]" search_in="hdr" header="Contact: " assign_to="2" />
+      <exec command="echo INVITE_ANSWER_TIME = `date`>> SIPP_LOGS.txt"/>
+    </action>
+</recv>
+  
+  
+  <send>
+    <![CDATA[
+
+      ACK [$2] SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]   
+      [routes]
+      [last_From:] 
+      [last_To:]
+      [last_Call-ID:]
+      CSeq: 2 ACK
+      Max-Forwards: 70
+      Content-Length: 0
+
+    ]]>
+  </send>
+
+  <recv request="BYE" >
+    <action>
+      <ereg regexp="sip.*[a-z,A-Z,0-9]" search_in="hdr" header="Contact: " assign_to="2" />
+    </action> 
+ </recv>
+
+   <send>
+    <![CDATA[
+
+      SIP/2.0 200 OK
+      [last_Via:]
+      [last_From:]
+      [last_To:]
+      [last_Call-ID:]
+      [last_CSeq:]
+      Content-Length: 0
+
+    ]]>
+  </send>
+
+
+
+<!-- definition of the response time repartition table (unit is ms)   -->
+  <ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200"/>
+     
+<!-- definition of the call length repartition table (unit is ms)     -->
+  <CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000"/>
+</scenario>
